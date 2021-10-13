@@ -23,8 +23,8 @@ const middleware = [
 ];
 
 const contactsPersistConfig = {
-  key: "contacts",
-  blacklist: ["filter", "_persist"],
+  key: "name",
+  blacklist: ["filter", "persist"],
   storage,
 };
 

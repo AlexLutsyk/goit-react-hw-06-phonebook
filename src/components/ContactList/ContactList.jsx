@@ -13,14 +13,15 @@ const ContactList = () => {
       item.name.toLowerCase().includes(normalizeFilter)
     );
   };
-
   const contacts = useSelector((state) => getFilteredContacts(state));
+
   const dispatch = useDispatch();
 
   const onDelete = (id) => dispatch(phoneBookActions.deleteContact(id));
+
   return (
     <ul className={s.contactItemsList}>
-      {contacts.map(({ name, number }) => (
+      {contacts.map(({ name, number, id }) => (
         <li key={shortid.generate()} className={s.contactItem}>
           <p>
             {name}: {number}
@@ -28,7 +29,7 @@ const ContactList = () => {
           <button
             type="button"
             className={s.contactDelete}
-            onClick={() => onDelete(name)}
+            onClick={() => onDelete(id)}
           >
             Delete contact
           </button>

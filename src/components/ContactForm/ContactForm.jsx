@@ -5,11 +5,12 @@ import phoneBookActions from "../../redux/phoneBookActions";
 
 import s from "./ContactForm.module.css";
 
-function ContactForm() {
+function ContactForm({ contactList }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const dispatch = useDispatch();
 
+  console.log(contactList);
   const handleChange = (evt) => {
     const { name, value } = evt.currentTarget;
 
@@ -32,8 +33,17 @@ function ContactForm() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(phoneBookActions.addContact({ name, number }));
-    reset();
+
+    const validName = name.trim();
+    const equalName = contactList.find((contact) => name === contact.name);
+
+    if (equalName) {
+      return alert(`${name} is already in contacts`);
+    }
+    if (validName) {
+      dispatch(phoneBookActions.addContact({ name, number }));
+      reset();
+    }
   };
 
   return (

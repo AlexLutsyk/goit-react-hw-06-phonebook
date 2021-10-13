@@ -18,7 +18,7 @@ const initialStateContacts = {
 const items = createReducer(initialStateContacts.contacts.items, {
   [phoneBookActions.addContact]: (state, { payload }) => [...state, payload],
   [phoneBookActions.deleteContact]: (state, { payload }) =>
-    state.filter((contact) => contact.name !== payload.name),
+    state.filter((item) => item.id !== payload),
 });
 const filter = createReducer(initialStateContacts.contacts.filter, {
   [phoneBookActions.changeFilter]: (_, { payload }) => payload,

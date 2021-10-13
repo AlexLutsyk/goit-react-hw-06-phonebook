@@ -1,5 +1,6 @@
 import "./App.css";
 // import { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
@@ -67,11 +68,12 @@ function App() {
   // const formSubmit = (data) => {
   //   addContact(data);
   // };
+  const contacts = useSelector((state) => state.contacts.items);
 
   return (
     <div className="wrapper">
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm contactList={contacts} />
       <h2>Contacts</h2>
       <Filter />
       <ContactList />
